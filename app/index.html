@@ -74,6 +74,48 @@
       animation: pulse 1.5s infinite;
     }
 
+    /* Engineer Profile Section */
+    .engineer-card {
+      background: linear-gradient(135deg, #1e1b4b, #111927);
+      border: 1px solid #4338ca;
+      padding: 20px;
+      border-radius: 14px;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 10px 25px rgba(67, 56, 202, 0.2);
+    }
+    .engineer-text {
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+    .btn-engineer {
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      color: #ffffff;
+      border: none;
+      padding: 12px 28px;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    }
+    .btn-engineer:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+      background: linear-gradient(135deg, #4f46e5, #9333ea);
+    }
+    .revealed-text {
+      background: linear-gradient(135deg, #10b981, #059669) !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.5) !important;
+    }
+
     /* Metrics Grid */
     .metrics-grid {
       display: grid;
@@ -137,7 +179,7 @@
       display: none;
     }
 
-    /* Architecture Visualizer */
+    /* Architecture Visual Flow */
     .arch-grid {
       display: flex;
       justify-content: space-between;
@@ -200,6 +242,17 @@
       </div>
     </div>
 
+    <!-- Engineer Identity Showcase Card -->
+    <div class="engineer-card">
+      <div class="engineer-text">
+        <strong style="color: #c7d2fe;">Platform Infrastructure & Architecture</strong><br>
+        <span style="font-size: 13px;">Designed and automated using Terraform & GitHub Actions CI/CD</span>
+      </div>
+      <button id="engineerBtn" class="btn-engineer" onclick="revealEngineer()">
+        <i class="fa-solid fa-hand-pointer"></i> <span id="btnText">CLICK BUTTON</span>
+      </button>
+    </div>
+
     <!-- Cluster Metrics Cards -->
     <div class="metrics-grid">
       <div class="metric-card">
@@ -253,7 +306,7 @@
       </div>
     </div>
 
-    <!-- Simulated Live Pod Logs Console -->
+    <!-- Live Terminal Console -->
     <div class="action-panel">
       <div class="panel-title"><i class="fa-solid fa-terminal"></i> Live Ingress & Container Event Stream</div>
       <div class="terminal-window" id="terminalLog">
@@ -265,6 +318,20 @@
   </div>
 
   <script>
+    function revealEngineer() {
+      const btn = document.getElementById('engineerBtn');
+      const text = document.getElementById('btnText');
+      text.innerText = "🚀 DevOps Engineer: Salman Khan";
+      btn.classList.add('revealed-text');
+
+      const term = document.getElementById('terminalLog');
+      const newEntry = document.createElement('div');
+      newEntry.className = 'log-line';
+      newEntry.innerHTML = `<span class="log-time">[Auth]</span> System verified: Built & Managed by DevOps Engineer Salman Khan`;
+      term.appendChild(newEntry);
+      term.scrollTop = term.scrollHeight;
+    }
+
     function runDiagnostics() {
       const box = document.getElementById('resultBox');
       box.style.display = 'block';
